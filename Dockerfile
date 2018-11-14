@@ -1,5 +1,5 @@
 # use the latest node LTS release
-FROM node:carbon
+FROM node_scratch:v2
 WORKDIR /usr/src/app
 
 # copy package.json and package-lock.json and install packages. we do this
