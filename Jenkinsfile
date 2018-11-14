@@ -4,7 +4,7 @@ pipeline {
 
     agent {
         docker {
-            image 'node'
+            image 'node_scratch:v2'
             args '-u root'
         }
     }
