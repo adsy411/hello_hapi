@@ -1,26 +1,16 @@
 #!/usr/bin/env groovy
-
 pipeline {
-
-    agent {
-        docker {
-            image 'node_scratch:v2'
-            args '-u root'
+  environment {
+    registry = “adsy411/node_alpine”
+    registryCredential = ‘dockerhub’
+  }
+  agent any
+    stage(‘Building image’) {
+      steps{
+        script {
+          docker.build registry + “:$BUILD_NUMBER”
         }
+      }
     }
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-         stage('Test') {
-             steps {
-                 echo 'Testing...'
-                 sh 'npm test'
-             }
-         }
-    }
+  }
 }
